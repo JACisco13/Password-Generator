@@ -1,19 +1,20 @@
 // Variables
 
+//Password Variable
+var pwd = '';
+
 //Criteria Variables
 var lowercase = 'abcdefghijklmnopqrstuvwxyz';
 var uppercase = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-var number = '0123456789';
-var specialcharacter = '!"#$%&()*+,-./:;<=>?@[\]^_`{|}~';
+var numbers = '0123456789';
+var specialcharacters = '!"#$%&()*+,-./:;<=>?@[\]^_`{|}~';
 
 //Criteria Selection Varriables
 var lowercaseSelection = false;
 var uppercaseSelection = false;
-var numberSelection = false;
-var specialcharacterSelection = false;
+var numbersSelection = false;
+var specialcharactersSelection = false;
 
-//Password Variable
-var pswrd = '';
 
 //Generate Function
 function generate() {
@@ -31,14 +32,35 @@ function generate() {
 
     if (confirm("Will password contain uppercase characters?") == true) {uppercaseSelection = true}
 
-    if (confirm("Will password contain numerical characters?") == true) {numberSelection = true}
+    if (confirm("Will password contain numerical characters?") == true) {numbersSelection = true}
 
-    if (confirm("Will password contain special characters?") == true) {specialcharacterSelection = true}
+    if (confirm("Will password contain special characters?") == true) {specialcharactersSelection = true}
     
-    //if none of the character types are selected, alerts the user to choose at least one
-    if (lowercaseSelection === false && uppercaseSelection === false && numberSelection === false && specialcharacterSelection === false) {alert("Password MUST contain at least 1 character type.")}
+    //Confirmation of Criteria Prompts
+    if (lowercaseSelection === false && uppercaseSelection === false && numbersSelection === false && specialcharactersSelection === false) {alert("Password MUST contain at least 1 character type.")}
   }
+
+  //Random Characters
+    var characters = '';
+    characters += (lowercaseSelection ? lowercase : '');
+    characters += (uppercaseSelection ? uppercase : '');
+    characters += (numbersSelection ? numbers : '');
+    characters += (specialcharactersSelection ? specialcharacters : '');
+
+    pwd = password(confirmLength, characters);
+
+    document.getElementById("password").innerHTML = pwd;
+
 }
+
+function password(l, characters) {
+    var pwd = '';
+    for (var i = 0; i < l; ++i) {
+        pwd += characters.charAt(Math.ceil(Math.random() * characters.length));
+    }
+    return pwd;
+}
+
 
 // Get references to the #generate element
 var generateBtn = document.querySelector("#generate");
