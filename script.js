@@ -1,15 +1,24 @@
-// Assignment code here
-var password = '';
-var lowerCase = 'abcdefghijklmnopqrstuvwxyz';
-var upperCase = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-var numeric = '01234567890';
-var specialCharacter = '!#$%&()*+,-./:;<=>?@[\]^_`{|}~';
+// Variables
+var lowercase = 'abcdefghijklmnopqrstuvwxyz';
+var uppercase = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+var number = '0123456789';
+var specialcharacter = '!"#$%&()*+,-./:;<=>?@[\]^_`{|}~';
+var lowercaseSelection = false;
+var uppercaseSelection = false;
+var numberSelection = false;
+var specialcharacterSelection = false;
+var pswrd = '';
 
+//Generate Function
 function generate() {
-  var confirmPasswordLength = '';
+    var confirmLength = '';
+//asking user to input desired character length
+    while (isNaN(confirmLength) || confirmLength < 8 || confirmLength > 128) {confirmLength = prompt("How long would like your password? (MUST be between 8 to 128 characters)");
+        if (confirmLength === null) {break;}
+    }
 
-  while (isNaN(confirmPasswordLength)) || confirmPasswordLength < 8 || confirmPasswordLength > 128) {confirmPasswordLength = prompt("What length would you like for this password? MUST BE 8 to 128 characters")}
 }
+
 // Get references to the #generate element
 var generateBtn = document.querySelector("#generate");
 
@@ -19,7 +28,6 @@ function writePassword() {
   var passwordText = document.querySelector("#password");
 
   passwordText.value = password;
-
 }
 
 // Add event listener to generate button
